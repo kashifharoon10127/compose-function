@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compose functions</title>
+</head>
+<body>
+    <script>
+        debugger
+        let mul = function(num){
+return num*5;
+}
+let subs = function (num){
+return num-10;
+}
+let add = function (num){
+return num+5;
+  
+}
+
+function compose(...AllFunctions){
+  return function(num){
+    return AllFunctions.reduceRight(function(result , Current){
+      return Current(result);
+    } , num);
+  }
+}
+  
+  let res = compose(mul ,subs , add);
+  console.log(res(10));
+    </script>
+</body>
+</html>
